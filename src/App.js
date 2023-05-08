@@ -1,16 +1,18 @@
 import React from 'react'
-import FormSwitcher from './FormSwitcher.jsx'
+import MemoList from './MemoList.jsx'
+// import FormSwitcher from './FormSwitcher.jsx'
 
 class App extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { newMemo: 'hogefugapuni', isChanging: false }
+    this.state = { newMemo: 'hogefugapuni' }
   }
 
   render () {
+    const memos = ['hoge', 'fuga', 'puni']
     return (
       <div>
-        <FormSwitcher isChanging={this.state.isChanging} />
+        <MemoList memos={memos} />
       </div>
     )
   }
