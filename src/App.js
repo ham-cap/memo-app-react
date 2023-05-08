@@ -1,21 +1,19 @@
 import React from 'react'
-import TestComponent from './test.js'
+import FormSwitcher from './FormSwitcher.jsx'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {test: 'hoge'};
+  constructor (props) {
+    super(props)
+    this.state = { newMemo: 'hogefugapuni', isChanging: false }
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <p>test</p>
-        <p>{this.state.test}</p>
-        <TestComponent hoge={this.state.test}/>
+        <FormSwitcher isChanging={this.state.isChanging} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
