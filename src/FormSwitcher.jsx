@@ -7,7 +7,7 @@ export default class TestComponent extends React.Component {
     if (this.props.isChanging) {
       form = <EditForm />
     } else {
-      form = <CreateForm />
+      form = <CreateForm onNewMemoTextChange={this.props.onNewMemoTextChange}/>
     }
     return form
   }

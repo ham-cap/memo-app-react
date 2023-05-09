@@ -5,14 +5,20 @@ import MemoList from './MemoList.jsx'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { newMemo: 'hogefugapuni' }
+    this.state = { newMemoText: '' }
+    this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
+  }
+
+  handleNewMemoTextChange (text) {
+    this.setState({ newMemoText: text })
   }
 
   render () {
     const memos = ['hoge', 'fuga', 'puni']
     return (
       <div>
-        <MemoList memos={memos} />
+        <MemoList memos={memos} newMemoText={this.state.newMemoText} onNewMemoTextChange={this.handleNewMemoTextChange} />
+        <p>{this.state.newMemoText}</p>
       </div>
     )
   }

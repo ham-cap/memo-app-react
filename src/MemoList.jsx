@@ -17,7 +17,7 @@ export default class MemoList extends React.Component {
 
     let form
     if (this.state.isVisible) {
-      form = (<FormSwitcher isChanging={this.state.isChanging} />)
+      form = (<FormSwitcher isChanging={this.state.isChanging} onNewMemoTextChange={this.props.onNewMemoTextChange} />)
     }
     return (
        <div>
