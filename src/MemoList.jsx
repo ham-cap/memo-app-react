@@ -1,5 +1,6 @@
 import React from 'react'
 import FormSwitcher from './FormSwitcher.jsx'
+import PropTypes from 'prop-types'
 
 export default class MemoList extends React.Component {
   constructor (props) {
@@ -28,4 +29,9 @@ export default class MemoList extends React.Component {
         </div>
     )
   }
+}
+
+MemoList.propTypes = {
+  memos: PropTypes.array,
+  onNewMemoTextChange: PropTypes.func
 }

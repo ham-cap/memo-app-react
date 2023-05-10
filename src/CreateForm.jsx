@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 export default class CreateForm extends React.Component {
   constructor (props) {
     super(props)
@@ -22,4 +23,9 @@ export default class CreateForm extends React.Component {
       </div>
     )
   }
+}
+
+CreateForm.propTypes = {
+  onNewMemoTextChange: PropTypes.func,
+  newMemoText: PropTypes.string
 }
