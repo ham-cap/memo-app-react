@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 export default class CreateForm extends React.Component {
   constructor (props) {
     super(props)
@@ -14,7 +15,7 @@ export default class CreateForm extends React.Component {
     return (
       <div>
         <p>CreateForm</p>
-        <input
+        <textarea
           type="text"
           value={this.props.newMemoText}
           onChange={this.handleNewMemoTextChange}

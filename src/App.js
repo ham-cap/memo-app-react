@@ -1,6 +1,5 @@
 import React from 'react'
 import MemoList from './MemoList.jsx'
-// import FormSwitcher from './FormSwitcher.jsx'
 
 class App extends React.Component {
   constructor (props) {
