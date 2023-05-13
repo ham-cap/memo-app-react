@@ -18,7 +18,7 @@ export default class MemoList extends React.Component {
 
     let form
     if (this.state.isVisible) {
-      form = (<FormSwitcher isChanging={this.state.isChanging} onNewMemoTextChange={this.props.onNewMemoTextChange} />)
+      form = (<FormSwitcher newMemoText={this.props.newMemoText}isChanging={this.state.isChanging} onNewMemoTextChange={this.props.onNewMemoTextChange} addMemo={this.props.addMemo}/>)
     }
     return (
        <div>
@@ -33,5 +33,7 @@ export default class MemoList extends React.Component {
 
 MemoList.propTypes = {
   memos: PropTypes.array,
-  onNewMemoTextChange: PropTypes.func
+  onNewMemoTextChange: PropTypes.func,
+  addMemo: PropTypes.func,
+  newMemoText: PropTypes.string
 }
