@@ -28,7 +28,8 @@ class App extends React.Component {
     e.preventDefault()
     if (this.state.newMemoText === '') return
     const memos = this.state.memos
-    memos.push(this.state.newMemoText)
+    const newMemo = this.state.newMemoText.split('\n')
+    memos.push(newMemo)
     const json = JSON.stringify(memos, undefined, 0)
     localStorage.setItem('memos', json)
     this.setState({ newMemoText: '' })
