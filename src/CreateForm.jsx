@@ -23,6 +23,9 @@ export default class CreateForm extends React.Component {
         <button type="submit" onClick={this.props.addMemo}>
           登録
         </button>
+        <button type="button" onClick={this.props.closeCreateForm}>
+          キャンセル
+        </button>
       </div>
     )
   }
@@ -31,5 +34,6 @@ export default class CreateForm extends React.Component {
 CreateForm.propTypes = {
   onNewMemoTextChange: PropTypes.func,
   newMemoText: PropTypes.string,
-  addMemo: PropTypes.func
+  addMemo: PropTypes.func,
+  closeCreateForm: PropTypes.func
 }

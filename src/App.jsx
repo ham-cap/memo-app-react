@@ -44,8 +44,6 @@ class App extends React.Component {
           onNewMemoTextChange={this.handleNewMemoTextChange}
           addMemo={this.addMemo}
         />
-        <p>{this.state.newMemoText}</p>
-        <p>{this.state.memos}</p>
       </div>
     )
   }
