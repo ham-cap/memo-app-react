@@ -5,13 +5,19 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     const currentMemos = this.getCurrentMemos()
-    this.state = { newMemoText: '', memos: currentMemos }
+    this.state = { newMemoText: '', editingMemoText: '', memos: currentMemos }
     this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
+    this.handleEditingMemoTextChange =
+      this.handleEditingMemoTextChange.bind(this)
     this.addMemo = this.addMemo.bind(this)
   }
 
   handleNewMemoTextChange (text) {
     this.setState({ newMemoText: text })
+  }
+
+  handleEditingMemoTextChange (text) {
+    this.setState({ editingMemoText: text })
   }
 
   getCurrentMemos () {
@@ -35,6 +41,11 @@ class App extends React.Component {
     this.setState({ newMemoText: '' })
   }
 
+  updateMemo (e) {
+    e.preventDefault()
+    console.log('update!')
+  }
+
   render () {
     return (
       <div>
@@ -43,7 +54,11 @@ class App extends React.Component {
           newMemoText={this.state.newMemoText}
           onNewMemoTextChange={this.handleNewMemoTextChange}
           addMemo={this.addMemo}
+          editingMemoText={this.state.editingMemoText}
+          onEditingMemoTextChange={this.handleEditingMemoTextChange}
+          updateMemo={this.updateMemo}
         />
+        <p>{this.state.editingMemoText}</p>
       </div>
     )
   }
