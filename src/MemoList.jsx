@@ -6,7 +6,11 @@ import './style/MemoList.css'
 export default class MemoList extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { isCreating: false, isChanging: false, isVisible: false }
+    this.state = {
+      isCreating: false,
+      isChanging: false,
+      isVisible: false
+    }
     this.displayCreateForm = this.displayCreateForm.bind(this)
     this.closeCreateForm = this.closeCreateForm.bind(this)
     this.closeEditForm = this.closeEditForm.bind(this)
@@ -18,7 +22,6 @@ export default class MemoList extends React.Component {
   }
 
   closeCreateForm () {
-    console.log('cancel!!')
     this.setState({ isCreating: false, isVisible: false })
   }
 
@@ -26,10 +29,12 @@ export default class MemoList extends React.Component {
     e.preventDefault()
     this.setState({ isCreating: false, isChanging: true, isVisible: true })
     console.log(index)
+    const selectedMemo = this.props.memos[index].join('\n')
+    console.log(selectedMemo)
+    this.props.setSelectedMemo(selectedMemo)
   }
 
   closeEditForm () {
-    console.log('cancel Edit!!!')
     this.setState({ isChanging: false, isVisible: false })
   }
 
@@ -37,7 +42,7 @@ export default class MemoList extends React.Component {
     const memos = this.props.memos
     const memoList = memos.map((memo, index) => (
       <li key={index}>
-        <a onClick={() => this.displayEditForm(index, event)} href="">
+        <a onClick={() => this.displayEditForm(index, event)} href="#">
           {memo[0]}
         </a>
       </li>
@@ -57,6 +62,7 @@ export default class MemoList extends React.Component {
           onEditingMemoTextChange={this.props.onEditingMemoTextChange}
           updateMemo={this.props.updateMemo}
           closeEditForm={this.closeEditForm}
+          selectedMemo={this.state.selectedMemo}
         />
       )
     } else {
@@ -69,7 +75,7 @@ export default class MemoList extends React.Component {
         <a
           className="linkForCreateForm"
           onClick={this.displayCreateForm}
-          href=""
+          href="#"
         >
           +
         </a>
@@ -86,5 +92,6 @@ MemoList.propTypes = {
   editingMemoText: PropTypes.string,
   onEditingMemoTextChange: PropTypes.func,
   updateMemo: PropTypes.func,
-  closeEditForm: PropTypes.func
+  closeEditForm: PropTypes.func,
+  setSelectedMemo: PropTypes.func
 }

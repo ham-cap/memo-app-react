@@ -13,6 +13,7 @@ export default class FormSwitcher extends React.Component {
           onEditingMemoTextChange={this.props.onEditingMemoTextChange}
           updateMemo={this.props.updateMemo}
           closeEditForm={this.props.closeEditForm}
+          selectedMemo={this.props.selectedMemo}
         />
       )
     } else if (this.props.isCreating) {
@@ -39,5 +40,6 @@ FormSwitcher.propTypes = {
   onEditingMemoTextChange: PropTypes.func,
   updateMemo: PropTypes.func,
   closeEditForm: PropTypes.func,
-  isCreating: PropTypes.bool
+  isCreating: PropTypes.bool,
+  selectedMemo: PropTypes.array
 }

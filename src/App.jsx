@@ -10,6 +10,7 @@ class App extends React.Component {
     this.handleEditingMemoTextChange =
       this.handleEditingMemoTextChange.bind(this)
     this.addMemo = this.addMemo.bind(this)
+    this.setSelectedMemo = this.setSelectedMemo.bind(this)
   }
 
   handleNewMemoTextChange (text) {
@@ -18,6 +19,10 @@ class App extends React.Component {
 
   handleEditingMemoTextChange (text) {
     this.setState({ editingMemoText: text })
+  }
+
+  setSelectedMemo (memo) {
+    this.setState({ editingMemoText: memo })
   }
 
   getCurrentMemos () {
@@ -57,8 +62,8 @@ class App extends React.Component {
           editingMemoText={this.state.editingMemoText}
           onEditingMemoTextChange={this.handleEditingMemoTextChange}
           updateMemo={this.updateMemo}
+          setSelectedMemo={this.setSelectedMemo}
         />
-        <p>{this.state.editingMemoText}</p>
       </div>
     )
   }
