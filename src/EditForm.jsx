@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './style/EditForm.css'
 
 export default class EditForm extends React.Component {
   constructor (props) {
@@ -17,6 +18,7 @@ export default class EditForm extends React.Component {
       <div>
         <p>EditForm</p>
         <textarea
+          className="textareaInEditForm"
           type="text"
           value={this.props.editingMemoText}
           onChange={this.handleEditingMemoTextChange}
