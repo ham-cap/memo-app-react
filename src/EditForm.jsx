@@ -23,7 +23,12 @@ export default class EditForm extends React.Component {
           value={this.props.editingMemoText}
           onChange={this.handleEditingMemoTextChange}
         />
-        <button type="submit" onClick={this.props.updateMemo}>
+        <button
+          type="submit"
+          onClick={() =>
+            this.props.updateMemo(this.props.indexOfSelectedMemo, event)
+          }
+        >
           更新
         </button>
         <button type="button" onClick={this.props.closeEditForm}>
@@ -38,5 +43,6 @@ EditForm.propTypes = {
   onEditingMemoTextChange: PropTypes.func,
   editingMemoText: PropTypes.string,
   updateMemo: PropTypes.func,
-  closeEditForm: PropTypes.func
+  closeEditForm: PropTypes.func,
+  indexOfSelectedMemo: PropTypes.number
 }

@@ -9,7 +9,8 @@ export default class MemoList extends React.Component {
     this.state = {
       isCreating: false,
       isChanging: false,
-      isVisible: false
+      isVisible: false,
+      indexOfSelectedMemo: ''
     }
     this.displayCreateForm = this.displayCreateForm.bind(this)
     this.closeCreateForm = this.closeCreateForm.bind(this)
@@ -27,10 +28,13 @@ export default class MemoList extends React.Component {
 
   displayEditForm (index, e) {
     e.preventDefault()
-    this.setState({ isCreating: false, isChanging: true, isVisible: true })
-    console.log(index)
+    this.setState({
+      isCreating: false,
+      isChanging: true,
+      isVisible: true,
+      indexOfSelectedMemo: index
+    })
     const selectedMemo = this.props.memos[index].join('\n')
-    console.log(selectedMemo)
     this.props.setSelectedMemo(selectedMemo)
   }
 
@@ -63,6 +67,7 @@ export default class MemoList extends React.Component {
           updateMemo={this.props.updateMemo}
           closeEditForm={this.closeEditForm}
           selectedMemo={this.state.selectedMemo}
+          indexOfSelectedMemo={this.state.indexOfSelectedMemo}
         />
       )
     } else {
