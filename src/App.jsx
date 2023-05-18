@@ -12,6 +12,7 @@ class App extends React.Component {
     this.addMemo = this.addMemo.bind(this)
     this.setSelectedMemo = this.setSelectedMemo.bind(this)
     this.updateMemo = this.updateMemo.bind(this)
+    this.deleteMemo = this.deleteMemo.bind(this)
   }
 
   handleNewMemoTextChange (text) {
@@ -56,6 +57,15 @@ class App extends React.Component {
     this.setState({ editingMemoText: '' })
   }
 
+  deleteMemo (index, e) {
+    e.preventDefault()
+    const currentMemos = this.state.memos
+    currentMemos.splice(index, 1)
+    const json = JSON.stringify(currentMemos, undefined, 0)
+    localStorage.setItem('memos', json)
+    this.setState({ editingMemoText: '' })
+  }
+
   render () {
     return (
       <div>
@@ -68,6 +78,7 @@ class App extends React.Component {
           onEditingMemoTextChange={this.handleEditingMemoTextChange}
           updateMemo={this.updateMemo}
           setSelectedMemo={this.setSelectedMemo}
+          deleteMemo={this.deleteMemo}
         />
       </div>
     )

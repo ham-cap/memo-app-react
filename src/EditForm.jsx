@@ -31,6 +31,14 @@ export default class EditForm extends React.Component {
         >
           更新
         </button>
+        <button
+          type="button"
+          onClick={() =>
+            this.props.deleteMemo(this.props.indexOfSelectedMemo, event)
+          }
+        >
+          削除
+        </button>
         <button type="button" onClick={this.props.closeEditForm}>
           キャンセル
         </button>
@@ -44,5 +52,6 @@ EditForm.propTypes = {
   editingMemoText: PropTypes.string,
   updateMemo: PropTypes.func,
   closeEditForm: PropTypes.func,
-  indexOfSelectedMemo: PropTypes.number
+  indexOfSelectedMemo: PropTypes.number,
+  deleteMemo: PropTypes.func
 }
