@@ -44,12 +44,13 @@ class App extends React.Component {
   }
 
   getCurrentMemos () {
-    if (Object.prototype.hasOwnProperty.call(localStorage, 'memos')) {
+    const memosJson = localStorage.getItem('memos')
+    if (memosJson === null) {
+      return []
+    } else {
       const memosJson = localStorage.getItem('memos')
       const memos = JSON.parse(memosJson)
       return memos
-    } else {
-      return []
     }
   }
 
