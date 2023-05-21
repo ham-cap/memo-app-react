@@ -5,7 +5,15 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     const currentMemos = this.getCurrentMemos()
-    this.state = { newMemoText: '', editingMemoText: '', memos: currentMemos }
+    this.state = {
+      newMemoText: '',
+      editingMemoText: '',
+      memos: currentMemos,
+      isCreating: false,
+      isChanging: false,
+      isVisible: false,
+      indexOfSelectedMemo: null
+    }
     this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
     this.handleEditingMemoTextChange =
       this.handleEditingMemoTextChange.bind(this)
@@ -13,6 +21,10 @@ class App extends React.Component {
     this.setSelectedMemo = this.setSelectedMemo.bind(this)
     this.updateMemo = this.updateMemo.bind(this)
     this.deleteMemo = this.deleteMemo.bind(this)
+    this.displayCreateForm = this.displayCreateForm.bind(this)
+    this.displayEditForm = this.displayEditForm.bind(this)
+    this.closeCreateForm = this.closeCreateForm.bind(this)
+    this.closeEditForm = this.closeEditForm.bind(this)
   }
 
   handleNewMemoTextChange (text) {
@@ -45,7 +57,7 @@ class App extends React.Component {
     memos.push(newMemo)
     const json = JSON.stringify(memos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ newMemoText: '' })
+    this.setState({ newMemoText: '', isVisible: false })
   }
 
   updateMemo (index, e) {
@@ -54,7 +66,7 @@ class App extends React.Component {
     currentMemos.splice(index, 1, this.state.editingMemoText.split('\n'))
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ editingMemoText: '' })
+    this.setState({ editingMemoText: '', isVisible: false })
   }
 
   deleteMemo (index, e) {
@@ -63,7 +75,32 @@ class App extends React.Component {
     currentMemos.splice(index, 1)
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ editingMemoText: '' })
+    this.setState({ editingMemoText: '', isVisible: false })
+  }
+
+  displayCreateForm (e) {
+    e.preventDefault()
+    this.setState({ isCreating: true, isChanging: false, isVisible: true })
+  }
+
+  closeCreateForm () {
+    this.setState({ isVisible: false })
+  }
+
+  displayEditForm (index, e) {
+    e.preventDefault()
+    this.setState({
+      isCreating: false,
+      isChanging: true,
+      isVisible: true,
+      indexOfSelectedMemo: index
+    })
+    const selectedMemo = this.state.memos[index].join('\n')
+    this.setSelectedMemo(selectedMemo)
+  }
+
+  closeEditForm () {
+    this.setState({ isVisible: false })
   }
 
   render () {
@@ -79,6 +116,14 @@ class App extends React.Component {
           updateMemo={this.updateMemo}
           setSelectedMemo={this.setSelectedMemo}
           deleteMemo={this.deleteMemo}
+          displayCreateForm={this.displayCreateForm}
+          closeCreateForm={this.closeCreateForm}
+          displayEditForm={this.displayEditForm}
+          closeEditForm={this.closeEditForm}
+          isCreating={this.state.isCreating}
+          isChanging={this.state.isChanging}
+          isVisible={this.state.isVisible}
+          indexOfSelectedMemo={this.state.indexOfSelectedMemo}
         />
       </div>
     )
