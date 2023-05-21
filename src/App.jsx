@@ -4,11 +4,10 @@ import MemoList from './MemoList.jsx'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const currentMemos = this.getCurrentMemos()
     this.state = {
       newMemoText: '',
       editingMemoText: '',
-      memos: currentMemos,
+      memos: [],
       isCreating: false,
       isChanging: false,
       isVisible: false,
@@ -25,6 +24,11 @@ class App extends React.Component {
     this.displayEditForm = this.displayEditForm.bind(this)
     this.closeCreateForm = this.closeCreateForm.bind(this)
     this.closeEditForm = this.closeEditForm.bind(this)
+  }
+
+  componentDidMount () {
+    const currentMemos = this.getCurrentMemos()
+    this.setState({ memos: currentMemos })
   }
 
   handleNewMemoTextChange (text) {
