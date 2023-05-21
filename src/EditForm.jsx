@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style/EditForm.css'
+import './style/Forms.css'
 
 export default class EditForm extends React.Component {
   constructor (props) {
@@ -16,32 +16,33 @@ export default class EditForm extends React.Component {
   render () {
     return (
       <div>
-        <p>EditForm</p>
+        <p>編集</p>
         <textarea
-          className="textareaInEditForm"
           type="text"
           value={this.props.editingMemoText}
           onChange={this.handleEditingMemoTextChange}
         />
-        <button
-          type="submit"
-          onClick={() =>
-            this.props.updateMemo(this.props.indexOfSelectedMemo, event)
-          }
-        >
-          更新
-        </button>
-        <button
-          type="button"
-          onClick={() =>
-            this.props.deleteMemo(this.props.indexOfSelectedMemo, event)
-          }
-        >
-          削除
-        </button>
-        <button type="button" onClick={this.props.closeEditForm}>
-          キャンセル
-        </button>
+        <div>
+          <button
+            type="submit"
+            onClick={() =>
+              this.props.updateMemo(this.props.indexOfSelectedMemo, event)
+            }
+          >
+            更新
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              this.props.deleteMemo(this.props.indexOfSelectedMemo, event)
+            }
+          >
+            削除
+          </button>
+          <button type="button" onClick={this.props.closeEditForm}>
+            キャンセル
+          </button>
+        </div>
       </div>
     )
   }

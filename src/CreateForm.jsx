@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './style/Forms.css'
 
 export default class CreateForm extends React.Component {
   constructor (props) {
@@ -14,18 +15,20 @@ export default class CreateForm extends React.Component {
   render () {
     return (
       <div>
-        <p>CreateForm</p>
+        <p>新規登録</p>
         <textarea
           type="text"
           value={this.props.newMemoText}
           onChange={this.handleNewMemoTextChange}
         />
-        <button type="submit" onClick={this.props.addMemo}>
-          登録
-        </button>
-        <button type="button" onClick={this.props.closeCreateForm}>
-          キャンセル
-        </button>
+        <div>
+          <button type="submit" onClick={this.props.addMemo}>
+            登録
+          </button>
+          <button type="button" onClick={this.props.closeCreateForm}>
+            キャンセル
+          </button>
+        </div>
       </div>
     )
   }

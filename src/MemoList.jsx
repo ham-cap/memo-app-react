@@ -39,15 +39,17 @@ export default class MemoList extends React.Component {
       ;<div></div>
     }
     return (
-      <div>
-        {form}
-        <ul>{memoList}</ul>
-        <button
-          className="linkForCreateForm"
-          onClick={this.props.displayCreateForm}
-        >
-          +
-        </button>
+      <div className="listContainer">
+        <div>
+          <ul>{memoList}</ul>
+          <button
+            className="linkForCreateForm"
+            onClick={this.props.displayCreateForm}
+          >
+            +
+          </button>
+        </div>
+        <div className="inputForms">{form}</div>
       </div>
     )
   }

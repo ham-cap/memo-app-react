@@ -20,3 +20,11 @@ li {
   font-size: 110%;
   padding-left: 40px;
 }
+
+.listContainer {
+  display: flex;
+}
+
+.inputForms {
+  padding-left: 40px;
+}
