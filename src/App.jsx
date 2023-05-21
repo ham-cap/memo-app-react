@@ -89,7 +89,7 @@ class App extends React.Component {
   }
 
   closeCreateForm () {
-    this.setState({ isVisible: false })
+    this.setState({ isVisible: false, newMemoText: '' })
   }
 
   displayEditForm (index, e) {
@@ -105,7 +105,7 @@ class App extends React.Component {
   }
 
   closeEditForm () {
-    this.setState({ isVisible: false })
+    this.setState({ isVisible: false, editingMemoText: '' })
   }
 
   render () {
