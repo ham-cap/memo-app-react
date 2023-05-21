@@ -2,6 +2,21 @@ li {
   list-style: none;
 }
 
+.existingMemo {
+  cursor: pointer;
+  border: none;
+  text-decoration: underline;
+  background: none;
+  color: #0033cc;
+  font-size: 110%;
+}
+
 .linkForCreateForm {
+  cursor: pointer;
+  border: none;
+  text-decoration: underline;
+  background: none;
+  color: #0033cc;
+  font-size: 110%;
   padding-left: 40px;
 }

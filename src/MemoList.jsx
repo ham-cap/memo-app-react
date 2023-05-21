@@ -8,9 +8,12 @@ export default class MemoList extends React.Component {
     const memos = this.props.memos
     const memoList = memos.map((memo, index) => (
       <li key={index}>
-        <a onClick={() => this.props.displayEditForm(index, event)} href="#">
+        <button
+          className="existingMemo"
+          onClick={() => this.props.displayEditForm(index, event)}
+        >
           {memo[0]}
-        </a>
+        </button>
       </li>
     ))
 
@@ -39,13 +42,12 @@ export default class MemoList extends React.Component {
       <div>
         {form}
         <ul>{memoList}</ul>
-        <a
+        <button
           className="linkForCreateForm"
           onClick={this.props.displayCreateForm}
-          href="#"
         >
           +
-        </a>
+        </button>
       </div>
     )
   }
