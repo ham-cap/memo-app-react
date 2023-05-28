@@ -17,27 +17,28 @@ export default class MemoList extends React.Component {
       </li>
     ))
 
-    let form
-    if (this.props.isVisible) {
-      form = (
-        <FormSwitcher
-          newMemoText={this.props.newMemoText}
-          isCreating={this.props.isCreating}
-          isChanging={this.props.isChanging}
-          onNewMemoTextChange={this.props.onNewMemoTextChange}
-          addMemo={this.props.addMemo}
-          closeCreateForm={this.props.closeCreateForm}
-          editingMemoText={this.props.editingMemoText}
-          onEditingMemoTextChange={this.props.onEditingMemoTextChange}
-          updateMemo={this.props.updateMemo}
-          closeEditForm={this.props.closeEditForm}
-          indexOfSelectedMemo={this.props.indexOfSelectedMemo}
-          deleteMemo={this.props.deleteMemo}
-        />
-      )
-    } else {
-      ;<div></div>
-    }
+    const form = ((isVisible) => {
+      if (isVisible) {
+        return (
+          <FormSwitcher
+            newMemoText={this.props.newMemoText}
+            isCreating={this.props.isCreating}
+            isChanging={this.props.isChanging}
+            onNewMemoTextChange={this.props.onNewMemoTextChange}
+            addMemo={this.props.addMemo}
+            closeCreateForm={this.props.closeCreateForm}
+            editingMemoText={this.props.editingMemoText}
+            onEditingMemoTextChange={this.props.onEditingMemoTextChange}
+            updateMemo={this.props.updateMemo}
+            closeEditForm={this.props.closeEditForm}
+            indexOfSelectedMemo={this.props.indexOfSelectedMemo}
+            deleteMemo={this.props.deleteMemo}
+          />
+        )
+      } else {
+        ;<div></div>
+      }
+    })(this.props.isVisible)
     return (
       <div className="listContainer">
         <div>
