@@ -1,22 +1,11 @@
 import React from 'react'
 import FormSwitcher from './FormSwitcher.jsx'
 import PropTypes from 'prop-types'
+import Memo from './Memo.jsx'
 import './style/MemoList.css'
 
 export default class MemoList extends React.Component {
   render () {
-    const memos = this.props.memos
-    const memoList = memos.map((memo, index) => (
-      <li key={index}>
-        <button
-          className="existingMemo"
-          onClick={() => this.props.displayEditForm(index, event)}
-        >
-          {memo[0]}
-        </button>
-      </li>
-    ))
-
     const form = ((isVisible) => {
       if (isVisible) {
         return (
@@ -42,7 +31,10 @@ export default class MemoList extends React.Component {
     return (
       <div className="listContainer">
         <div>
-          <ul>{memoList}</ul>
+          <Memo
+            memos={this.props.memos}
+            displayEditForm={this.props.displayEditForm}
+          />
           <button
             className="linkForCreateForm"
             onClick={this.props.displayCreateForm}
