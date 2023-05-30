@@ -21,10 +21,9 @@ export default class FormSwitcher extends React.Component {
       } else if (isCreating) {
         return (
           <CreateForm
-            newMemoText={this.props.newMemoText}
-            onNewMemoTextChange={this.props.onNewMemoTextChange}
-            addMemo={this.props.addMemo}
+            memos={this.props.memos}
             closeCreateForm={this.props.closeCreateForm}
+            handleMemosChange={this.props.handleMemosChange}
           />
         )
       }
@@ -46,5 +45,7 @@ FormSwitcher.propTypes = {
   isCreating: PropTypes.bool,
   selectedMemo: PropTypes.array,
   indexOfSelectedMemo: PropTypes.number,
-  deleteMemo: PropTypes.func
+  deleteMemo: PropTypes.func,
+  memos: PropTypes.array,
+  handleMemosChange: PropTypes.func
 }

@@ -7,7 +7,6 @@ export default class MemoList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      newMemoText: '',
       editingMemoText: '',
       memos: [],
       isCreating: false,
@@ -15,10 +14,8 @@ export default class MemoList extends React.Component {
       isVisible: false,
       indexOfSelectedMemo: null
     }
-    this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
     this.handleEditingMemoTextChange =
       this.handleEditingMemoTextChange.bind(this)
-    this.addMemo = this.addMemo.bind(this)
     this.setSelectedMemo = this.setSelectedMemo.bind(this)
     this.updateMemo = this.updateMemo.bind(this)
     this.deleteMemo = this.deleteMemo.bind(this)
@@ -26,15 +23,11 @@ export default class MemoList extends React.Component {
     this.displayEditForm = this.displayEditForm.bind(this)
     this.closeCreateForm = this.closeCreateForm.bind(this)
     this.closeEditForm = this.closeEditForm.bind(this)
+    this.handleMemosChange = this.handleMemosChange.bind(this)
   }
 
   componentDidMount () {
-    const currentMemos = this.getCurrentMemos()
-    this.setState({ memos: currentMemos })
-  }
-
-  handleNewMemoTextChange (text) {
-    this.setState({ newMemoText: text })
+    this.handleMemosChange()
   }
 
   handleEditingMemoTextChange (text) {
@@ -56,15 +49,9 @@ export default class MemoList extends React.Component {
     }
   }
 
-  addMemo (e) {
-    e.preventDefault()
-    if (this.state.newMemoText === '') return
-    const memos = this.state.memos
-    const newMemo = this.state.newMemoText.split('\n')
-    memos.push(newMemo)
-    const json = JSON.stringify(memos, undefined, 0)
-    localStorage.setItem('memos', json)
-    this.setState({ newMemoText: '', isVisible: false })
+  handleMemosChange () {
+    const currentMemos = this.getCurrentMemos()
+    this.setState({ memos: currentMemos })
   }
 
   updateMemo (index, e) {
@@ -91,7 +78,7 @@ export default class MemoList extends React.Component {
   }
 
   closeCreateForm () {
-    this.setState({ isVisible: false, newMemoText: '' })
+    this.setState({ isVisible: false })
   }
 
   displayEditForm (index, e) {
@@ -127,11 +114,8 @@ export default class MemoList extends React.Component {
         </div>
         {this.state.isVisible && (
           <FormSwitcher
-            newMemoText={this.state.newMemoText}
             isCreating={this.state.isCreating}
             isChanging={this.state.isChanging}
-            onNewMemoTextChange={this.state.onNewMemoTextChange}
-            addMemo={this.addMemo}
             closeCreateForm={this.closeCreateForm}
             editingMemoText={this.state.editingMemoText}
             onEditingMemoTextChange={this.handleEditingMemoTextChange}
@@ -139,6 +123,8 @@ export default class MemoList extends React.Component {
             closeEditForm={this.closeEditForm}
             indexOfSelectedMemo={this.state.indexOfSelectedMemo}
             deleteMemo={this.deleteMemo}
+            memos={this.state.memos}
+            handleMemosChange={this.handleMemosChange}
           />
         )}
       </div>
