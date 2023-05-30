@@ -50,16 +50,12 @@ export default class CreateForm extends React.Component {
             キャンセル
           </button>
         </div>
-        <p>{this.state.newMemoText}</p>
       </div>
     )
   }
 }
 
 CreateForm.propTypes = {
-  onNewMemoTextChange: PropTypes.func,
-  newMemoText: PropTypes.string,
-  addMemo: PropTypes.func,
   closeCreateForm: PropTypes.func,
   memos: PropTypes.array,
   handleMemosChange: PropTypes.func
