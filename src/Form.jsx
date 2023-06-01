@@ -6,7 +6,7 @@ export default class Form extends React.Component {
   render () {
     return (
       <div>
-        <p>Form</p>
+        {this.props.indexOfSelectedMemo ? <p>編集</p> : <p>新規登録</p>}
         <textarea
           value={this.props.newMemoText}
           onChange={this.props.handleNewMemoTextChange}
