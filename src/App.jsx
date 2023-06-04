@@ -1,11 +1,11 @@
 import React from 'react'
-import Memo from './Memo.jsx'
+import MemosSection from './MemosSection.jsx'
 
 class App extends React.Component {
   render () {
     return (
       <div>
-        <Memo />
+        <MemosSection />
       </div>
     )
   }
