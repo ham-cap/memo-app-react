@@ -8,6 +8,7 @@ export default class Form extends React.Component {
       <div>
         <p>{this.props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
         <textarea
+          id="inputForm"
           value={this.props.newMemoText}
           onChange={this.props.handleNewMemoTextChange}
         />
@@ -36,7 +37,12 @@ export default class Form extends React.Component {
             : (
             <button
               type="submit"
-              onClick={(event) => this.props.addMemo(event)}
+              onClick={(event) =>
+                this.props.addMemo(
+                  event,
+                  document.getElementById('inputForm').value
+                )
+              }
             >
               登録
             </button>

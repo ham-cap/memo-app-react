@@ -41,15 +41,15 @@ export default class Memo extends React.Component {
     this.setState({ newMemoText: e.target.value })
   }
 
-  addMemo (e) {
+  addMemo (e, input) {
     e.preventDefault()
-    if (this.state.newMemoText === '') return
+    if (input === '') return
     const memos = this.state.memos
-    const newMemo = this.state.newMemoText.split('\n')
+    const newMemo = input.split('\n')
     memos.push(newMemo)
     const json = JSON.stringify(memos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ newMemoText: '', isVisible: false })
+    this.setState({ isVisible: false })
   }
 
   updateMemo (index, e) {
@@ -112,6 +112,7 @@ export default class Memo extends React.Component {
             updateMemo={this.updateMemo}
             deleteMemo={this.deleteMemo}
             closeForm={this.closeForm}
+            formTest={this.formTest}
           />
         )}
       </div>
