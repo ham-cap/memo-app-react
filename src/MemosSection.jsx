@@ -7,12 +7,11 @@ export default class Memo extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      newMemoText: '',
       memos: [],
       isVisible: false,
-      indexOfSelectedMemo: null
+      indexOfSelectedMemo: null,
+      selectedMemo: ''
     }
-    this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
     this.addMemo = this.addMemo.bind(this)
     this.updateMemo = this.updateMemo.bind(this)
     this.deleteMemo = this.deleteMemo.bind(this)
@@ -37,10 +36,6 @@ export default class Memo extends React.Component {
     }
   }
 
-  handleNewMemoTextChange (e) {
-    this.setState({ newMemoText: e.target.value })
-  }
-
   addMemo (e, input) {
     e.preventDefault()
     if (input === '') return
@@ -52,13 +47,13 @@ export default class Memo extends React.Component {
     this.setState({ isVisible: false })
   }
 
-  updateMemo (index, e) {
+  updateMemo (e, index, input) {
     e.preventDefault()
     const currentMemos = this.state.memos
-    currentMemos.splice(index, 1, this.state.newMemoText.split('\n'))
+    currentMemos.splice(index, 1, input.split('\n'))
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ newMemoText: '', isVisible: false })
+    this.setState({ isVisible: false, selectedMemo: '' })
   }
 
   deleteMemo (index, e) {
@@ -67,11 +62,11 @@ export default class Memo extends React.Component {
     currentMemos.splice(index, 1)
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    this.setState({ newMemoText: '', isVisible: false })
+    this.setState({ isVisible: false })
   }
 
   closeForm () {
-    this.setState({ isVisible: false })
+    this.setState({ isVisible: false, selectedMemo: '' })
   }
 
   displayForm (e, index = null) {
@@ -85,13 +80,13 @@ export default class Memo extends React.Component {
       this.setSelectedMemo(selectedMemo)
     } else {
       this.setState({
-        newMemoText: ''
+        selectedMemo: ''
       })
     }
   }
 
   setSelectedMemo (memo) {
-    this.setState({ newMemoText: memo })
+    this.setState({ selectedMemo: memo })
   }
 
   render () {
@@ -105,10 +100,9 @@ export default class Memo extends React.Component {
         </div>
         {this.state.isVisible && (
           <Form
-            newMemoText={this.state.newMemoText}
             indexOfSelectedMemo={this.state.indexOfSelectedMemo}
+            selectedMemo={this.state.selectedMemo}
             addMemo={this.addMemo}
-            handleNewMemoTextChange={this.handleNewMemoTextChange}
             updateMemo={this.updateMemo}
             deleteMemo={this.deleteMemo}
             closeForm={this.closeForm}

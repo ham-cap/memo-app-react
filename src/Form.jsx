@@ -7,11 +7,7 @@ export default class Form extends React.Component {
     return (
       <div>
         <p>{this.props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
-        <textarea
-          id="inputForm"
-          value={this.props.newMemoText}
-          onChange={this.props.handleNewMemoTextChange}
-        />
+        <textarea id="inputForm" value={this.props.selectedMemo} />
         <div>
           {this.props.indexOfSelectedMemo !== null
             ? (
@@ -19,7 +15,11 @@ export default class Form extends React.Component {
               <button
                 type="submit"
                 onClick={(event) =>
-                  this.props.updateMemo(this.props.indexOfSelectedMemo, event)
+                  this.props.updateMemo(
+                    event,
+                    this.props.indexOfSelectedMemo,
+                    document.getElementById('inputForm').value
+                  )
                 }
               >
                 更新
@@ -56,11 +56,10 @@ export default class Form extends React.Component {
   }
 }
 Form.propTypes = {
-  newMemoText: PropTypes.string,
   addMemo: PropTypes.func,
-  handleNewMemoTextChange: PropTypes.func,
   indexOfSelectedMemo: PropTypes.number,
   updateMemo: PropTypes.func,
   deleteMemo: PropTypes.func,
-  closeForm: PropTypes.func
+  closeForm: PropTypes.func,
+  selectedMemo: PropTypes.string
 }
