@@ -3,11 +3,39 @@ import PropTypes from 'prop-types'
 import './style/Forms.css'
 
 export default class Form extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      newMemoText: ''
+    }
+    this.addMemo = this.addMemo.bind(this)
+    // this.updateMemo = this.updateMemo.bind(this)
+    this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
+  }
+
+  handleNewMemoTextChange (e) {
+    this.setState({ newMemoText: e.target.value })
+  }
+
+  addMemo (e) {
+    e.preventDefault()
+    if (this.state.newMemoText === '') return
+    const memos = this.props.memos
+    const newMemo = this.state.newMemoText.split('\n')
+    memos.push(newMemo)
+    const json = JSON.stringify(memos, undefined, 0)
+    localStorage.setItem('memos', json)
+    this.props.closeForm()
+  }
+
   render () {
     return (
       <div>
         <p>{this.props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
-        <textarea id="inputForm" value={this.props.selectedMemo} />
+        <textarea
+          value={this.state.newMemoText}
+          onChange={this.handleNewMemoTextChange}
+        />
         <div>
           {this.props.indexOfSelectedMemo !== null
             ? (
@@ -35,15 +63,7 @@ export default class Form extends React.Component {
             </div>
               )
             : (
-            <button
-              type="submit"
-              onClick={(event) =>
-                this.props.addMemo(
-                  event,
-                  document.getElementById('inputForm').value
-                )
-              }
-            >
+            <button type="submit" onClick={(event) => this.addMemo(event)}>
               登録
             </button>
               )}
@@ -61,5 +81,6 @@ Form.propTypes = {
   updateMemo: PropTypes.func,
   deleteMemo: PropTypes.func,
   closeForm: PropTypes.func,
-  selectedMemo: PropTypes.string
+  selectedMemo: PropTypes.string,
+  memos: PropTypes.array
 }
