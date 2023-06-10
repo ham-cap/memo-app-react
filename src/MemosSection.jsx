@@ -13,10 +13,10 @@ export default class Memo extends React.Component {
       selectedMemo: ''
     }
     // this.addMemo = this.addMemo.bind(this)
-    this.updateMemo = this.updateMemo.bind(this)
+    // this.updateMemo = this.updateMemo.bind(this)
     this.deleteMemo = this.deleteMemo.bind(this)
     this.displayForm = this.displayForm.bind(this)
-    this.setSelectedMemo = this.setSelectedMemo.bind(this)
+    // this.setSelectedMemo = this.setSelectedMemo.bind(this)
     this.closeForm = this.closeForm.bind(this)
   }
 
@@ -47,14 +47,14 @@ export default class Memo extends React.Component {
   //   this.setState({ isVisible: false })
   // }
 
-  updateMemo (e, index, input) {
-    e.preventDefault()
-    const currentMemos = this.state.memos
-    currentMemos.splice(index, 1, input.split('\n'))
-    const json = JSON.stringify(currentMemos, undefined, 0)
-    localStorage.setItem('memos', json)
-    this.setState({ isVisible: false, selectedMemo: '' })
-  }
+  // updateMemo (e, index, input) {
+  //   e.preventDefault()
+  //   const currentMemos = this.state.memos
+  //   currentMemos.splice(index, 1, input.split('\n'))
+  //   const json = JSON.stringify(currentMemos, undefined, 0)
+  //   localStorage.setItem('memos', json)
+  //   this.setState({ isVisible: false, selectedMemo: '' })
+  // }
 
   deleteMemo (index, e) {
     e.preventDefault()
@@ -75,19 +75,19 @@ export default class Memo extends React.Component {
       isVisible: true,
       indexOfSelectedMemo: index
     })
-    if (index !== null) {
-      const selectedMemo = this.state.memos[index].join('\n')
-      this.setSelectedMemo(selectedMemo)
-    } else {
-      this.setState({
-        selectedMemo: ''
-      })
-    }
+    // if (index !== null) {
+    //   const selectedMemo = this.state.memos[index].join('\n')
+    //   this.setSelectedMemo(selectedMemo)
+    // } else {
+    //   this.setState({
+    //     selectedMemo: ''
+    //   })
+    // }
   }
 
-  setSelectedMemo (memo) {
-    this.setState({ selectedMemo: memo })
-  }
+  // setSelectedMemo (memo) {
+  //   this.setState({ selectedMemo: memo })
+  // }
 
   render () {
     return (

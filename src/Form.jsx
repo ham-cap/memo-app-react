@@ -17,6 +17,16 @@ export default class Form extends React.Component {
     this.setState({ newMemoText: e.target.value })
   }
 
+  componentDidMount () {
+    if (this.props.indexOfSelectedMemo !== null) {
+      const selectedMemo =
+        this.props.memos[this.props.indexOfSelectedMemo].join('\n')
+      this.setState({ newMemoText: selectedMemo })
+    } else {
+      this.setState({ newMemoText: '' })
+    }
+  }
+
   addMemo (e) {
     e.preventDefault()
     if (this.state.newMemoText === '') return
@@ -26,6 +36,20 @@ export default class Form extends React.Component {
     const json = JSON.stringify(memos, undefined, 0)
     localStorage.setItem('memos', json)
     this.props.closeForm()
+  }
+
+  updateMemo (e) {
+    e.preventDefault()
+    const currentMemos = this.props.memos
+    currentMemos.splice(
+      this.props.indexOfSelectedMemo,
+      1,
+      this.state.newMemoText.split('\n')
+    )
+    const json = JSON.stringify(currentMemos, undefined, 0)
+    localStorage.setItem('memos', json)
+    this.props.closeForm()
+    this.setState({ newMemoText: '' })
   }
 
   render () {
@@ -40,16 +64,7 @@ export default class Form extends React.Component {
           {this.props.indexOfSelectedMemo !== null
             ? (
             <div>
-              <button
-                type="submit"
-                onClick={(event) =>
-                  this.props.updateMemo(
-                    event,
-                    this.props.indexOfSelectedMemo,
-                    document.getElementById('inputForm').value
-                  )
-                }
-              >
+              <button type="submit" onClick={(event) => this.updateMemo(event)}>
                 更新
               </button>
               <button
