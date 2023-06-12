@@ -27,6 +27,21 @@ export default class Form extends React.Component {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    if (
+      this.props.indexOfSelectedMemo !== prevProps.indexOfSelectedMemo &&
+      this.props.indexOfSelectedMemo === null
+    ) {
+      this.setState({ newMemoText: '' })
+    } else if (
+      this.props.indexOfSelectedMemo !== prevProps.indexOfSelectedMemo
+    ) {
+      const selectedMemo =
+        this.props.memos[this.props.indexOfSelectedMemo].join('\n')
+      this.setState({ newMemoText: selectedMemo })
+    }
+  }
+
   addMemo (e) {
     e.preventDefault()
     if (this.state.newMemoText === '') return
