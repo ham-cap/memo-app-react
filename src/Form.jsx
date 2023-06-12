@@ -8,8 +8,6 @@ export default class Form extends React.Component {
     this.state = {
       newMemoText: ''
     }
-    this.addMemo = this.addMemo.bind(this)
-    // this.updateMemo = this.updateMemo.bind(this)
     this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
   }
 
@@ -67,6 +65,15 @@ export default class Form extends React.Component {
     this.setState({ newMemoText: '' })
   }
 
+  deleteMemo (index, e) {
+    e.preventDefault()
+    const currentMemos = this.props.memos
+    currentMemos.splice(index, 1)
+    const json = JSON.stringify(currentMemos, undefined, 0)
+    localStorage.setItem('memos', json)
+    this.props.closeForm()
+  }
+
   render () {
     return (
       <div>
@@ -85,7 +92,7 @@ export default class Form extends React.Component {
               <button
                 type="button"
                 onClick={(event) =>
-                  this.props.deleteMemo(this.props.indexOfSelectedMemo, event)
+                  this.deleteMemo(this.props.indexOfSelectedMemo, event)
                 }
               >
                 削除
@@ -106,11 +113,7 @@ export default class Form extends React.Component {
   }
 }
 Form.propTypes = {
-  addMemo: PropTypes.func,
   indexOfSelectedMemo: PropTypes.number,
-  updateMemo: PropTypes.func,
-  deleteMemo: PropTypes.func,
   closeForm: PropTypes.func,
-  selectedMemo: PropTypes.string,
   memos: PropTypes.array
 }
