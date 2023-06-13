@@ -3,14 +3,13 @@ import Form from './Form.jsx'
 import List from './List.jsx'
 import './style/MemoList.css'
 
-export default class Memo extends React.Component {
+export default class MemosSection extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       memos: [],
       isVisible: false,
-      indexOfSelectedMemo: null,
-      selectedMemo: ''
+      indexOfSelectedMemo: null
     }
     this.displayForm = this.displayForm.bind(this)
     this.closeForm = this.closeForm.bind(this)
