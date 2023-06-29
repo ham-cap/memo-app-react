@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Memo from './Memo.jsx'
 
-export default class List extends React.Component {
+export default class MemoList extends React.Component {
   render () {
     return (
       <ul>
@@ -18,7 +18,7 @@ export default class List extends React.Component {
     )
   }
 }
-List.propTypes = {
+MemoList.propTypes = {
   displayForm: PropTypes.func,
   memos: PropTypes.array
 }

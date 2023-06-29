@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from './Form.jsx'
-import List from './List.jsx'
+import MemoList from './MemoList.jsx'
 import './style/MemoList.css'
 
 export default class MemosSection extends React.Component {
@@ -47,7 +47,7 @@ export default class MemosSection extends React.Component {
     return (
       <div className="listContainer">
         <div>
-          <List memos={this.state.memos} displayForm={this.displayForm} />
+          <MemoList memos={this.state.memos} displayForm={this.displayForm} />
           <button className="linkForCreateForm" onClick={this.displayForm}>
             +
           </button>
