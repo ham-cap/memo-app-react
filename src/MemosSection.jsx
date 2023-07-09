@@ -11,7 +11,7 @@ function MemosSection () {
   useEffect(() => {
     const currentMemos = getCurrentMemos()
     setMemos(currentMemos)
-  })
+  }, [])
 
   const getCurrentMemos = () => {
     const memosJson = localStorage.getItem('memos')
