@@ -1,28 +1,13 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
+import { useMemos } from './useMemos.jsx'
 import './style/MemoList.css'
 
 function MemosSection () {
-  const [memos, setMemos] = useState([])
   const [isVisible, setIsVisible] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
-
-  useEffect(() => {
-    const currentMemos = getCurrentMemos()
-    setMemos(currentMemos)
-  }, [])
-
-  const getCurrentMemos = () => {
-    const memosJson = localStorage.getItem('memos')
-    if (memosJson === null) {
-      return []
-    } else {
-      const memosJson = localStorage.getItem('memos')
-      const memos = JSON.parse(memosJson)
-      return memos
-    }
-  }
+  const memos = useMemos()
 
   const closeForm = () => {
     setIsVisible(false)
