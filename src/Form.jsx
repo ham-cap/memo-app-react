@@ -1,9 +1,13 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import './style/Forms.css'
+import { IsLoggedIn } from './App.jsx'
 
 function Form (props) {
   const [newMemoText, setNewMemoText] = useState('')
+  const isLoggedIn = useContext(IsLoggedIn)
+  console.log('hoge')
+  console.log(isLoggedIn)
 
   const handleNewMemoTextChange = (e) => {
     setNewMemoText(e.target.value)
