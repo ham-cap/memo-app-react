@@ -1,13 +1,15 @@
-import { React, useState } from 'react'
+import { React, useState, useContext } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
 import { useMemos } from './useMemos.jsx'
+import { IsLoggedIn } from './App.jsx'
 import './style/MemoList.css'
 
 function MemosSection () {
   const [isVisible, setIsVisible] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
+  const isLoggedIn = useContext(IsLoggedIn)
 
   const closeForm = () => {
     setIsVisible(false)
@@ -24,9 +26,11 @@ function MemosSection () {
     <div className="listContainer">
       <div>
         <MemoList memos={memos} displayForm={displayForm} />
-        <button className="linkForCreateForm" onClick={displayForm}>
-          +
-        </button>
+        {isLoggedIn && (
+          <button className="linkForCreateForm" onClick={displayForm}>
+            +
+          </button>
+        )}
       </div>
       {isVisible && (
         <Form
