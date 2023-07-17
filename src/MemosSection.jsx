@@ -9,7 +9,7 @@ function MemosSection () {
   const [isVisible, setIsVisible] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
-  const isLoggedIn = useContext(IsLoggedIn)
+  const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedIn)
 
   const closeForm = () => {
     setIsVisible(false)
@@ -25,6 +25,9 @@ function MemosSection () {
   return (
     <div className="listContainer">
       <div>
+        <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+          {isLoggedIn ? 'ログアウト' : 'ログイン'}
+        </button>
         <MemoList memos={memos} displayForm={displayForm} />
         {isLoggedIn && (
           <button className="linkForCreateForm" onClick={displayForm}>
