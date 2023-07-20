@@ -2,12 +2,11 @@ import { React, useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import './style/Forms.css'
 import { IsLoggedIn } from './App.jsx'
+import ButtonsInForm from './ButtonsInForm.jsx'
 
 function Form (props) {
   const [newMemoText, setNewMemoText] = useState('')
-  const isLoggedIn = useContext(IsLoggedIn)
-  console.log('hoge')
-  console.log(isLoggedIn)
+  const [isLoggedIn] = useContext(IsLoggedIn)
 
   const handleNewMemoTextChange = (e) => {
     setNewMemoText(e.target.value)
@@ -57,25 +56,14 @@ function Form (props) {
       <p>{props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
       <textarea value={newMemoText} onChange={handleNewMemoTextChange} />
       <div>
-        {props.indexOfSelectedMemo !== null
-          ? (
-          <div>
-            <button type="submit" onClick={(event) => updateMemo(event)}>
-              更新
-            </button>
-            <button
-              type="button"
-              onClick={(event) => deleteMemo(props.indexOfSelectedMemo, event)}
-            >
-              削除
-            </button>
-          </div>
-            )
-          : (
-          <button type="submit" onClick={(event) => addMemo(event)}>
-            登録
-          </button>
-            )}
+        {isLoggedIn && (
+          <ButtonsInForm
+            indexOfSelectedMemo={props.indexOfSelectedMemo}
+            addMemo={addMemo}
+            updateMemo={updateMemo}
+            deleteMemo={deleteMemo}
+          />
+        )}
       </div>
       <button type="button" onClick={props.closeForm}>
         キャンセル
