@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
-import { useMemos } from './useMemos.jsx'
+import { useMemos } from './useMemos.js'
 import './style/MemoList.css'
 
 function MemosSection () {
