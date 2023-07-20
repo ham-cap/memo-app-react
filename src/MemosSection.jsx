@@ -5,18 +5,18 @@ import { useMemos } from './useMemos.js'
 import './style/MemoList.css'
 
 function MemosSection () {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisibleForm, setIsVisibleForm] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
 
   const closeForm = () => {
-    setIsVisible(false)
+    setIsVisibleForm(false)
     setIndexOfSelectedMemo('')
   }
 
   const displayForm = (e, index = null) => {
     e.preventDefault()
-    setIsVisible(true)
+    setIsVisibleForm(true)
     setIndexOfSelectedMemo(index)
   }
 
@@ -28,7 +28,7 @@ function MemosSection () {
           +
         </button>
       </div>
-      {isVisible && (
+      {isVisibleForm && (
         <Form
           memos={memos}
           indexOfSelectedMemo={indexOfSelectedMemo}
