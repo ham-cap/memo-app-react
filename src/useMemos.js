@@ -4,12 +4,11 @@ export const useMemos = () => {
   const [memos, setMemos] = useState([])
 
   const getCurrentMemos = () => {
-    const memosJson = localStorage.getItem('memos')
-    if (memosJson === null) {
+    const memosFromLocalStorage = localStorage.getItem('memos')
+    if (memosFromLocalStorage === null) {
       return []
     } else {
-      const memosJson = localStorage.getItem('memos')
-      const memos = JSON.parse(memosJson)
+      const memos = JSON.parse(memosFromLocalStorage)
       return memos
     }
   }
