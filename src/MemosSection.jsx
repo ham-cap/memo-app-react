@@ -2,14 +2,14 @@ import { React, useState, useContext } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
 import { useMemos } from './useMemos.jsx'
-import { IsLoggedIn } from './App.jsx'
+import { IsLoggedInContext } from './IsLoggedInContext.js'
 import './style/MemoList.css'
 
 function MemosSection () {
   const [isVisible, setIsVisible] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
-  const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedIn)
+  const [isLoggedIn, setIsLoggedIn] = useContext(IsLoggedInContext)
 
   const closeForm = () => {
     setIsVisible(false)

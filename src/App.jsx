@@ -1,15 +1,15 @@
-import { React, useState, createContext } from 'react'
+import { React, useState, useContext } from 'react'
 import MemosSection from './MemosSection.jsx'
-
-export const IsLoggedIn = createContext()
+import { IsLoggedInContext } from './IsLoggedInContext.js'
 
 function App () {
-  const [isloggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedInContext = useContext(IsLoggedInContext)
+  const [isloggedIn, setIsLoggedIn] = useState(isLoggedInContext)
   return (
     <div>
-      <IsLoggedIn.Provider value={[isloggedIn, setIsLoggedIn]}>
+      <IsLoggedInContext.Provider value={[isloggedIn, setIsLoggedIn]}>
         <MemosSection />
-      </IsLoggedIn.Provider>
+      </IsLoggedInContext.Provider>
     </div>
   )
 }
