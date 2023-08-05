@@ -1,14 +1,13 @@
 import { React } from 'react'
 import MemosSection from './MemosSection.jsx'
-import { IsLoggedInContext, useIsLoggedIn } from './IsLoggedInContext.js'
+import IsLoggedInProvider from './IsLoggedInProvider.jsx'
 
 function App () {
-  const [isLoggedIn, setIsLoggedIn] = useIsLoggedIn()
   return (
     <div>
-      <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
+      <IsLoggedInProvider>
         <MemosSection />
-      </IsLoggedInContext.Provider>
+      </IsLoggedInProvider>
     </div>
   )
 }
