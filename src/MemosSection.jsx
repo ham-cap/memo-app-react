@@ -1,24 +1,24 @@
 import { React, useState } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
-import { useMemos } from './useMemos.jsx'
+import { useMemos } from './useMemos.js'
 import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
 import './style/MemoList.css'
 
 function MemosSection () {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisibleForm, setIsVisibleForm] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
   const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn()
 
   const closeForm = () => {
-    setIsVisible(false)
+    setIsVisibleForm(false)
     setIndexOfSelectedMemo('')
   }
 
   const displayForm = (e, index = null) => {
     e.preventDefault()
-    setIsVisible(true)
+    setIsVisibleForm(true)
     setIndexOfSelectedMemo(index)
   }
 
@@ -35,7 +35,7 @@ function MemosSection () {
           </button>
         )}
       </div>
-      {isVisible && (
+      {isVisibleForm && (
         <Form
           memos={memos}
           indexOfSelectedMemo={indexOfSelectedMemo}
