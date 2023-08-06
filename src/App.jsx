@@ -2,7 +2,7 @@ import { React } from 'react'
 import MemosSection from './MemosSection.jsx'
 import IsLoggedInProvider from './IsLoggedInProvider.jsx'
 
-function App() {
+function App () {
   return (
     <div>
       <IsLoggedInProvider>

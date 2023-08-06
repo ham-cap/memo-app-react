@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Memo from './Memo.jsx'
 
-function MemoList(props) {
+function MemoList (props) {
   return (
     <ul>
       {props.memos.map((memo, index) => (
@@ -18,7 +18,7 @@ function MemoList(props) {
 }
 MemoList.propTypes = {
   displayForm: PropTypes.func,
-  memos: PropTypes.array,
+  memos: PropTypes.array
 }
 
 export default MemoList

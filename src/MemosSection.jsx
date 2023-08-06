@@ -5,7 +5,7 @@ import { useMemos } from './useMemos.js'
 import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
 import './style/MemoList.css'
 
-function MemosSection() {
+function MemosSection () {
   const [isVisibleForm, setIsVisibleForm] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
