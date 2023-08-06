@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Memo (props) {
+function Memo(props) {
   return (
     <li>
       <button
@@ -16,7 +16,7 @@ function Memo (props) {
 Memo.propTypes = {
   index: PropTypes.number,
   displayForm: PropTypes.func,
-  memo: PropTypes.array
+  memo: PropTypes.array,
 }
 
 export default Memo

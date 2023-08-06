@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const IsLoggedInContext = createContext()
 
-function IsLoggedInProvider (props) {
+function IsLoggedInProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
@@ -13,13 +13,13 @@ function IsLoggedInProvider (props) {
   )
 }
 
-export function useIsLoggedIn () {
+export function useIsLoggedIn() {
   const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext)
   return { isLoggedIn, setIsLoggedIn }
 }
 
 IsLoggedInProvider.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
 }
 
 export default IsLoggedInProvider

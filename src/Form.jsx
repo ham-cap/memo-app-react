@@ -4,7 +4,7 @@ import './style/Forms.css'
 import ButtonsInForm from './ButtonsInForm.jsx'
 import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
 
-function Form (props) {
+function Form(props) {
   const [newMemoText, setNewMemoText] = useState('')
   const { isLoggedIn } = useIsLoggedIn()
 
@@ -75,7 +75,7 @@ function Form (props) {
 Form.propTypes = {
   indexOfSelectedMemo: PropTypes.number,
   closeForm: PropTypes.func,
-  memos: PropTypes.array
+  memos: PropTypes.array,
 }
 
 export default Form
