@@ -2,8 +2,8 @@ import { React, useState } from 'react'
 import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
 import { useMemos } from './useMemos.js'
-import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
 import './style/MemoList.css'
+import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
 
 function MemosSection () {
   const [isVisibleForm, setIsVisibleForm] = useState(false)
