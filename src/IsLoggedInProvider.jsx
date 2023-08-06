@@ -14,7 +14,7 @@ function IsLoggedInProvider (props) {
 }
 
 export function useIsLoggedIn () {
-  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext) // useState(false)
+  const { isLoggedIn, setIsLoggedIn } = useContext(IsLoggedInContext)
   return { isLoggedIn, setIsLoggedIn }
 }
 
