@@ -1,89 +1,115 @@
-import { React, useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './style/Forms.css'
 
-function Form (props) {
-  const [newMemoText, setNewMemoText] = useState('')
-
-  const handleNewMemoTextChange = (e) => {
-    setNewMemoText(e.target.value)
+export default class Form extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      newMemoText: ''
+    }
+    this.handleNewMemoTextChange = this.handleNewMemoTextChange.bind(this)
   }
 
-  useEffect(() => {
-    if (props.indexOfSelectedMemo === null) {
-      setNewMemoText('')
-    } else {
-      const selectedMemo = props.memos[props.indexOfSelectedMemo].join('\n')
-      setNewMemoText(selectedMemo)
-    }
-  }, [props.indexOfSelectedMemo])
+  handleNewMemoTextChange (e) {
+    this.setState({ newMemoText: e.target.value })
+  }
 
-  const addMemo = (e) => {
+  componentDidMount () {
+    if (this.props.indexOfSelectedMemo !== null) {
+      const selectedMemo =
+        this.props.memos[this.props.indexOfSelectedMemo].join('\n')
+      this.setState({ newMemoText: selectedMemo })
+    } else {
+      this.setState({ newMemoText: '' })
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.indexOfSelectedMemo === prevProps.indexOfSelectedMemo) return
+    if (this.props.indexOfSelectedMemo === null) {
+      this.setState({ newMemoText: '' })
+    } else {
+      const selectedMemo =
+        this.props.memos[this.props.indexOfSelectedMemo].join('\n')
+      this.setState({ newMemoText: selectedMemo })
+    }
+  }
+
+  addMemo (e) {
     e.preventDefault()
-    if (newMemoText === '') return
-    const memos = props.memos
-    const newMemo = newMemoText.split('\n')
+    if (this.state.newMemoText === '') return
+    const memos = this.props.memos
+    const newMemo = this.state.newMemoText.split('\n')
     memos.push(newMemo)
     const json = JSON.stringify(memos, undefined, 0)
     localStorage.setItem('memos', json)
-    props.closeForm()
+    this.props.closeForm()
   }
 
-  const updateMemo = (e) => {
+  updateMemo (e) {
     e.preventDefault()
-    const currentMemos = props.memos
-    currentMemos.splice(props.indexOfSelectedMemo, 1, newMemoText.split('\n'))
+    const currentMemos = this.props.memos
+    currentMemos.splice(
+      this.props.indexOfSelectedMemo,
+      1,
+      this.state.newMemoText.split('\n')
+    )
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    props.closeForm()
-    setNewMemoText('')
+    this.props.closeForm()
+    this.setState({ newMemoText: '' })
   }
 
-  const deleteMemo = (index, e) => {
+  deleteMemo (index, e) {
     e.preventDefault()
-    const currentMemos = props.memos
+    const currentMemos = this.props.memos
     currentMemos.splice(index, 1)
     const json = JSON.stringify(currentMemos, undefined, 0)
     localStorage.setItem('memos', json)
-    props.closeForm()
+    this.props.closeForm()
   }
 
-  return (
-    <div>
-      <p>{props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
-      <textarea value={newMemoText} onChange={handleNewMemoTextChange} />
+  render () {
+    return (
       <div>
-        {props.indexOfSelectedMemo !== null
-          ? (
-          <div>
-            <button type="submit" onClick={(event) => updateMemo(event)}>
-              更新
+        <p>{this.props.indexOfSelectedMemo !== null ? '編集' : '新規登録'}</p>
+        <textarea
+          value={this.state.newMemoText}
+          onChange={this.handleNewMemoTextChange}
+        />
+        <div>
+          {this.props.indexOfSelectedMemo !== null
+            ? (
+            <div>
+              <button type="submit" onClick={(event) => this.updateMemo(event)}>
+                更新
+              </button>
+              <button
+                type="button"
+                onClick={(event) =>
+                  this.deleteMemo(this.props.indexOfSelectedMemo, event)
+                }
+              >
+                削除
+              </button>
+            </div>
+              )
+            : (
+            <button type="submit" onClick={(event) => this.addMemo(event)}>
+              登録
             </button>
-            <button
-              type="button"
-              onClick={(event) => deleteMemo(props.indexOfSelectedMemo, event)}
-            >
-              削除
-            </button>
-          </div>
-            )
-          : (
-          <button type="submit" onClick={(event) => addMemo(event)}>
-            登録
-          </button>
-            )}
+              )}
+        </div>
+        <button type="button" onClick={this.props.closeForm}>
+          キャンセル
+        </button>
       </div>
-      <button type="button" onClick={props.closeForm}>
-        キャンセル
-      </button>
-    </div>
-  )
+    )
+  }
 }
-
 Form.propTypes = {
   indexOfSelectedMemo: PropTypes.number,
   closeForm: PropTypes.func,
   memos: PropTypes.array
 }
-
-export default Form
