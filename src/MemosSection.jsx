@@ -3,13 +3,13 @@ import Form from './Form.jsx'
 import MemoList from './MemoList.jsx'
 import { useMemos } from './useMemos.js'
 import './style/MemoList.css'
-import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
+import { useLogInStatus } from './LogInStatusProvider.jsx'
 
 function MemosSection () {
   const [isVisibleForm, setIsVisibleForm] = useState(false)
   const [indexOfSelectedMemo, setIndexOfSelectedMemo] = useState(null)
   const memos = useMemos()
-  const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn()
+  const { isLoggedIn, switchLogInStatus } = useLogInStatus()
 
   const closeForm = () => {
     setIsVisibleForm(false)
@@ -25,7 +25,7 @@ function MemosSection () {
   return (
     <div className="listContainer">
       <div>
-        <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        <button onClick={() => switchLogInStatus()}>
           {isLoggedIn ? 'ログアウト' : 'ログイン'}
         </button>
         <MemoList memos={memos} displayForm={displayForm} />

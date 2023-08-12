@@ -2,11 +2,11 @@ import { React, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import './style/Forms.css'
 import ButtonsInForm from './ButtonsInForm.jsx'
-import { useIsLoggedIn } from './IsLoggedInProvider.jsx'
+import { useLogInStatus } from './LogInStatusProvider.jsx'
 
 function Form (props) {
   const [newMemoText, setNewMemoText] = useState('')
-  const { isLoggedIn } = useIsLoggedIn()
+  const { isLoggedIn } = useLogInStatus()
 
   const handleNewMemoTextChange = (e) => {
     setNewMemoText(e.target.value)

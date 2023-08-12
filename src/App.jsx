@@ -1,13 +1,13 @@
 import { React } from 'react'
 import MemosSection from './MemosSection.jsx'
-import IsLoggedInProvider from './IsLoggedInProvider.jsx'
+import LogInStatusProvider from './LogInStatusProvider.jsx'
 
 function App () {
   return (
     <div>
-      <IsLoggedInProvider>
+      <LogInStatusProvider>
         <MemosSection />
-      </IsLoggedInProvider>
+      </LogInStatusProvider>
     </div>
   )
 }
