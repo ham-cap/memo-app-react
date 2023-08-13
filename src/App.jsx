@@ -1,13 +1,13 @@
 import { React } from 'react'
 import MemosSection from './MemosSection.jsx'
-import LogInStatusProvider from './LogInStatusProvider.jsx'
+import AuthenticationProvider from './AuthenticationProvider.jsx'
 
 function App () {
   return (
     <div>
-      <LogInStatusProvider>
+      <AuthenticationProvider>
         <MemosSection />
-      </LogInStatusProvider>
+      </AuthenticationProvider>
     </div>
   )
 }
